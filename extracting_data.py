@@ -30,7 +30,7 @@ def extract_playtime(doc):
 def extract_difficulty(doc):
     difficulty_synonyms = {
         "łatwy": ["łatwe", "prosty", "łatwa", "łatwo", "łatwy", "łatna", "proste", "prosta", "prosty", "prosta","łatwiej"],
-        "średni": ["średnie", "umiarkowany", "średnia", "średnio", "średni", "średnia", "umiarkowane", "umiarkowana", "umiarkowany", "umiarkowana","umiarkowanie"],
+        "średni": ["średnie", "umiarkowany", "średnia", "średnio", "średni", "średnia", "umiarkowane", "umiarkowana", "umiarkowany", "umiarkowana","umiarkowanie","niezbyt"],
         "trudny": ["trudne", "skomplikowany", "trudna", "trudno", "trudny", "trudna", "skomplikowane", "skomplikowana", "skomplikowany", "skomplikowana"]
     }
     

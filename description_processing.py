@@ -1,6 +1,7 @@
 import spacy
 from extracting_data import extract_players, extract_playtime, extract_difficulty
 import language_tool_python
+import time
 
 tool = language_tool_python.LanguageTool('pl-PL')
 nlp = spacy.load('pl_core_news_sm')
@@ -17,13 +18,16 @@ def normalize_text(text):
 
 
 def parse_polish_description(description):
+    
     # Process the text with spaCy
+    start = time.time()
     normalized_description=normalize_text(description)
-    print(normalized_description)
+    print(time.time()-start)
     matches = tool.check(normalized_description)
     corrected_description = tool.correct(normalized_description)
+    print(time.time()-start)
     
-    print(corrected_description)
+    #print(corrected_description)
     
     doc = nlp(corrected_description)
     
@@ -31,15 +35,17 @@ def parse_polish_description(description):
     players = extract_players(doc)
     playtime = extract_playtime(doc)
     difficulty = extract_difficulty(doc)
-    
+    print(time.time()-start)
     # Return the parsed data as a dictionary
     return {
         "players": players,
         "playtime": playtime,
         "difficulty": difficulty,
     }
+    
 
-# Example usage
-description = "SzuKam grya dla 4 graczy, niezbyt długiej, o śSrednim poziomie skomplikowania."
-parsed_data = parse_polish_description(description)
-print(parsed_data)
+if __name__ == "__main__":
+    description = "SzuKam grya dla 4 graczy, niezbyt długiej, o śSrednim poziomie skomplikowania."
+    parsed_data = parse_polish_description(description)
+    print(parsed_data)
+
